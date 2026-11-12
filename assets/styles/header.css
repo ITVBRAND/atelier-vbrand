@@ -1,0 +1,253 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    background: transparent;
+    transition: background .3s ease-in-out;
+}
+
+.header--scroll {
+    background: var(--clr-white);
+}
+
+.header__wrap {
+    padding: calc(24 / 1440 * 100vw) 0px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    width: calc(112 / 1440 * 100vw);
+    height: calc(32 / 1440 * 100vw);
+    object-fit: contain;
+    object-position: center;
+    flex-shrink: 0;
+
+    transition: filter .3s ease-in-out;
+}
+
+.header--scroll .header__logo {
+    filter: brightness(0);
+}
+
+.header__panel {
+    display: contents;
+}
+
+.header__nav {
+    display: flex;
+    flex-direction: row;
+    gap: calc(32 / 1440 * 100vw);
+    justify-content: center;
+    align-items: center;
+}
+
+.header__link {
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity .3s ease-in-out, color .3s ease-in-out;
+}
+
+.header--scroll .header__link {
+    color: var(--clr-black);
+}
+
+.header__link:hover {
+    opacity: 0.7;
+}
+
+.header__btn {
+    color: var(--clr-white);
+    background: var(--clr-black);
+    flex-shrink: 0;
+
+    box-shadow: inset 0 0 0 1px var(--clr-black);
+    transition: background .3s ease-in-out, color .3s ease-in-out, box-shadow .3s ease-in-out;
+}
+
+.header--scroll .header__btn {
+    color: var(--clr-black);
+    background: var(--clr-white);
+}
+
+.header__btn::after {
+    content: '→';
+    transition: .3s ease-in-out;
+}
+
+.header__btn:hover::after {
+    transform: translateX(6px);
+}
+
+.header__burger {
+    display: none;
+
+    width: 32px;
+    height: 32px;
+    padding: 0px;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.header__burger-line {
+    display: block;
+
+    width: 22px;
+    height: 1.5px;
+
+    background: var(--clr-white);
+    transition: .3s ease-in-out;
+}
+
+.header--scroll .header__burger-line {
+    background: var(--clr-black);
+}
+
+.header--scroll.header--open .header__logo {
+    filter: none;
+}
+
+.header--scroll.header--open .header__link,
+.header--scroll.header--open .header__btn {
+    color: var(--clr-white);
+}
+
+.header--scroll.header--open .header__btn {
+    background: var(--clr-black);
+}
+
+.header--scroll.header--open .header__burger-line {
+    background: var(--clr-white);
+}
+
+.header--open .header__burger-line:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+
+.header--open .header__burger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.header--open .header__burger-line:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+body:has(.header--open) {
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .header__nav {
+        gap: 24px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .header__wrap {
+        padding: 24px 0px;
+    }
+
+    .header__logo,
+    .header__burger {
+        position: relative;
+        z-index: 2;
+    }
+
+    .header__logo {
+        width: 112px;
+        height: 32px;
+    }
+
+    .header__panel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        width: 100%;
+        height: 100%;
+        padding: 112px 7.5% 32px;
+        box-sizing: border-box;
+
+        background: var(--clr-black);
+        visibility: hidden;
+        transform: translateY(-100%);
+        transition: transform .3s ease-in-out, visibility .3s ease-in-out;
+    }
+
+    .header--open .header__panel {
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .header__nav {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .header__link {
+        font-size: 22px;
+        line-height: 120%;
+    }
+
+    .header__btn {
+        display: flex;
+    }
+
+    .header__burger {
+        display: flex;
+    }
+
+}
+
+@media screen and (max-width: 430px) {
+
+    .header__wrap {
+        padding: 16px 0px;
+    }
+
+    .header__logo {
+        width: 96px;
+        height: 28px;
+    }
+
+    .header__panel {
+        padding: 88px 7.5% 24px;
+    }
+
+    .header__nav {
+        gap: 24px;
+    }
+
+    .header__link {
+        font-size: 20px;
+    }
+
+}

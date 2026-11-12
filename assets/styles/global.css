@@ -1,0 +1,43 @@
+:root {
+    --clr-white: #ffffff;
+    --clr-black: #111111;
+    --clr-gray: #666666;
+    --clr-white-500: #F0F0F0;
+}
+
+.container {
+    max-width: 85%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/*color*/
+
+.white {
+    color: var(--clr-white);
+}
+
+/*components*/
+
+.btn {
+    padding: calc(14 / 1440 * 100vw) calc(24 / 1440 * 100vw);
+
+    display: flex;
+    flex-direction: row;
+    gap: calc(10 / 1440 * 100vw);
+    justify-content: flex-start;
+    align-items: center;
+
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .btn {
+        padding: 14px 24px;
+        gap: 10px;
+    }
+
+}
