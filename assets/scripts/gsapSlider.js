@@ -60,22 +60,9 @@ if (slider && window.gsap && window.ScrollTrigger) {
     const slides = gsap.utils.toArray('.slider .slide');
 
     slides.forEach((slide, index) => {
-        gsap.set(slide, { zIndex: index + 1 });
+        const card = slide.querySelector('.slide__card');
 
-        if (!reduceMotion && index > 0) {
-            gsap.fromTo(slide, {
-                autoAlpha: 0
-            }, {
-                autoAlpha: 1,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: slide,
-                    start: 'top bottom',
-                    end: 'top top',
-                    scrub: true
-                }
-            });
-        }
+        gsap.set(slide, { zIndex: index + 1 });
 
         if (index === slides.length - 1) {
             return;
@@ -87,6 +74,19 @@ if (slider && window.gsap && window.ScrollTrigger) {
             pin: true,
             pinSpacing: false
         });
+
+        if (!reduceMotion && card && slides[index + 1]) {
+            gsap.to(card, {
+                scale: 0.94,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: slides[index + 1],
+                    start: 'top bottom',
+                    end: 'top top',
+                    scrub: true
+                }
+            });
+        }
     });
 
     if (slides.length > 1) {
